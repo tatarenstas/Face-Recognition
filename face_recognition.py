@@ -27,7 +27,7 @@ known_face_names = [
 print("Done learning and creating profiles")
 
 def makeAttendanceEntry(name):
-    with open('/content/face_recognition/attendance_list.txt','r+') as FILE:
+    with open('attendance_list.txt','r+') as FILE:
         allLines = FILE.readlines()
         attendanceList = []
         for line in allLines:
