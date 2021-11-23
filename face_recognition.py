@@ -27,7 +27,7 @@ known_face_names = [
 print("Done learning and creating profiles")
 
 def makeAttendanceEntry(name):
-    with open('attendance_list.csv','r+') as FILE:
+    with open('/content/face_recognition/attendance_list.txt','r+') as FILE:
         allLines = FILE.readlines()
         attendanceList = []
         for line in allLines:
@@ -36,7 +36,7 @@ def makeAttendanceEntry(name):
         if name not in attendanceList:
             now = datetime.now()
             dtString = now.strftime('%d/%b/%Y, %H:%M:%S')
-            print(name+' '+dtString)
+            FILE.writelines(f'\n{name},{dtString}')
 
 file_name = "unknown_vo.jpg"
 unknown_image = face_recognition.load_image_file(file_name)
