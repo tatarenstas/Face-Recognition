@@ -49,7 +49,6 @@ pil_image = Image.fromarray(unknown_image)
 draw = ImageDraw.Draw(pil_image)
 
 for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
-    # See if the face is a match for the known face(s)
     matches = face_recognition.compare_faces(known_face_encodings, face_encoding)
 
     name = "Unknown"
@@ -59,12 +58,10 @@ for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodi
     if matches[best_match_index]:
         name = known_face_names[best_match_index]
 
-    # Draw a box around the face using the Pillow module
     cv2.rectangle(unknown_image_to_draw,(left, top), (right, bottom), (0,255,0),3 )
     draw.rectangle(((left, top), (right, bottom)), outline=(0, 255, 255))
     cv2.putText(unknown_image_to_draw,name,(left,top-20), cv2.FONT_HERSHEY_SIMPLEX,1, (0,0,255), 2,cv2.LINE_AA)
     print(name)
     makeAttendanceEntry(name)
 
-# display(pil_image)
 cv2.imshow(unknown_image_to_draw)
